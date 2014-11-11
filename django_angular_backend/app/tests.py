@@ -11,17 +11,13 @@ from django.test.client import Client
 
 
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+class MainPageTest(TestCase):
 
-
-class HttpTest(TestCase):
-    def test_home(self):
+    def test_bio_on_main_page(self):
         c = Client()
         response = c.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Hello world!')
+        self.assertIn(response, 'Ruslan')
+        self.assertIn(response, 'Makarenko')
+        self.assertIn(response, '01.12.2014')
+        
