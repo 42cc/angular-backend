@@ -32,6 +32,6 @@ class MyInfoPageTest(LiveServerTestCase):
         contact_fields = self.browser.find_elements_by_tag_name('tr')
 
         for i in range(len(myInfo)):
-            self.assertIn(contact_fields[i].text, myInfo[i][0])
-            self.assertIn(contact_fields[i].text, myInfo[i][1])
+            self.assertIn(myInfo[i][0], contact_fields[i].text)
+            self.assertIn(myInfo[i][1], contact_fields[i].text)
 

@@ -25,9 +25,9 @@
 
       <table ng-controller="InfoCtrl as info">
         <btable>
-          <tr ng-repeat="(key, data) in info.myInfo">
-            <td ng-bind="key"></td>
-            <td ng-bind="data"></td>
+          <tr ng-repeat="f in info.myInfo">
+            <td ng-bind="f.field"></td>
+            <td ng-bind="f.value"></td>
           </tr>
         </btable>
       </table>
