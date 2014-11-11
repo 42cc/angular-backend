@@ -5,13 +5,41 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ STATIC_URL }}app/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}app/css/main.css">
 
     <title>Angular app</title>
 
     <script type="text/javascript" src="{% static "test.js" %}"></script>
 
   </head>
-  <body>
-    <h1>Hello world!</h1>
+  <body ng-app="app">
+    <div class="container">
+      <h1>42TestAngular</h1>
+      <nav>
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#">Main</a></li>
+          <li><a href="#">Contacts</a></li>
+        </ul>
+      </nav>
+
+      <table ng-controller="InfoCtrl as info">
+        <btable>
+          <tr ng-repeat="f in info.myInfo">
+            <td ng-bind="f.field"></td>
+            <td ng-bind="f.value"></td>
+          </tr>
+        </btable>
+      </table>
+
+    </div>
+
+    <script src="{{ STATIC_URL }}lib/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}lib/bootstrap.min.js"></script>
+    <script src="{{ STATIC_URL }}lib/angular.min.js"></script>
+
+    <script src="{{ STATIC_URL }}app/js/app.js"></script>
+    <script src="{{ STATIC_URL }}app/js/controllers/InfoController.js"></script>
+
   </body>
 </html>
