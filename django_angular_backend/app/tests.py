@@ -6,18 +6,32 @@ Replace this with more appropriate tests for your application.
 """
 
 from django.core.urlresolvers import reverse
-from django.test import TestCase
-from django.test.client import Client
+from django.test import LiveServerTestCase
+from selenium import webdriver
 
-
-
-class MainPageTest(TestCase):
-
-    def test_bio_on_main_page(self):
-        c = Client()
-        response = c.get(reverse('home'))
-        self.assertEqual(response.status_code, 200)
-        self.assertIn(response, 'Ruslan')
-        self.assertIn(response, 'Makarenko')
-        self.assertIn(response, '01.12.2014')
+myInfo = {
+    'First Name':    'Ruslan',
+    'Last Name':     'Makarenko',
+    'Date of birth': '01.12.1986',
+    'Email':         'ruslan.makarenko@gmail.com',
+    'Jabber':        'macruss@jabber.kiev.ua'
+}
         
+class MyInfoPageTest(LiveServerTestCase):
+
+    def setUp(self):
+        self.browser = webdriver.Firefox()
+        self.browser.implicitly_wait(3)
+
+    def tearDown(self):
+        self.browser.quit()
+        
+    def test_render_my_info_on_main_page(self):
+        self.browser.get(self.live_server_url)
+
+        contact_fields = self.browser.find_elements_by_tag_name('tr')
+
+        for i in range(len(myInfo)):
+            self.assertIn(contact_fields[i].text, myInfo.keys()[i])
+            self.assertIn(contact_fields[i].text, myInfo.values()[i])
+
