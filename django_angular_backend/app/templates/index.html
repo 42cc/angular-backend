@@ -23,6 +23,14 @@
         </ul>
       </nav>
 
+      <table ng-controller="InfoCtrl as info">
+        <btable>
+          <tr ng-repeat="(key, data) in info.myInfo">
+            <td ng-bind="key"></td>
+            <td ng-bind="data"></td>
+          </tr>
+        </btable>
+      </table>
 
     </div>
 
@@ -31,6 +39,7 @@
     <script src="{{ STATIC_URL }}lib/angular.min.js"></script>
 
     <script src="{{ STATIC_URL }}app/js/app.js"></script>
+    <script src="{{ STATIC_URL }}app/js/controllers/InfoController.js"></script>
 
   </body>
 </html>

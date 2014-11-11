@@ -9,13 +9,13 @@ from django.core.urlresolvers import reverse
 from django.test import LiveServerTestCase
 from selenium import webdriver
 
-myInfo = {
-    'First Name':    'Ruslan',
-    'Last Name':     'Makarenko',
-    'Date of birth': '01.12.1986',
-    'Email':         'ruslan.makarenko@gmail.com',
-    'Jabber':        'macruss@jabber.kiev.ua'
-}
+myInfo = [
+    ('First Name',    'Ruslan'),
+    ('Last Name',     'Makarenko'),
+    ('Date of birth', '01.12.1986'),
+    ('Email',         'ruslan.makarenko@gmail.com'),
+    ('Jabber',        'macruss@jabber.kiev.ua')
+]
         
 class MyInfoPageTest(LiveServerTestCase):
 
@@ -32,6 +32,6 @@ class MyInfoPageTest(LiveServerTestCase):
         contact_fields = self.browser.find_elements_by_tag_name('tr')
 
         for i in range(len(myInfo)):
-            self.assertIn(contact_fields[i].text, myInfo.keys()[i])
-            self.assertIn(contact_fields[i].text, myInfo.values()[i])
+            self.assertIn(contact_fields[i].text, myInfo[i][0])
+            self.assertIn(contact_fields[i].text, myInfo[i][1])
 
