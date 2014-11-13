@@ -17,30 +17,24 @@
       <nav>
         <ul class="nav nav-tabs">
           <li class="active"><a href="#">Main</a></li>
-          <li><a href="#">Contacts</a></li>
+          <li><a href="#/contacts">Contacts</a></li>
         </ul>
       </nav>
 
-      <h2>My info</h2>
-
-      <table ng-controller="InfoCtrl as info">
-        <tbody>
-          <tr ng-repeat="f in info.myInfo">
-            <td ng-bind="f.field"></td>
-            <td ng-bind="f.value"></td>
-          </tr>
-        </tbody>
-      </table>
+      <div ng-view></div>
 
     </div>
 
     <script src="{{ STATIC_URL }}lib/jquery.min.js"></script>
     <script src="{{ STATIC_URL }}lib/bootstrap.min.js"></script>
     <script src="{{ STATIC_URL }}lib/angular.min.js"></script>
+    <script src="{{ STATIC_URL }}lib/angular-route.min.js"></script>
 
     <script src="{{ STATIC_URL }}app/js/nav.js"></script>
     <script src="{{ STATIC_URL }}app/js/app.js"></script>
     <script src="{{ STATIC_URL }}app/js/controllers/InfoController.js"></script>
+    <script src="{{ STATIC_URL }}app/js/controllers/ContactsController.js"></script>
+    <script src="{{ STATIC_URL }}app/js/services/contactsService.js"></script>
 
   </body>
 </html>

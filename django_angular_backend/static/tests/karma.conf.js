@@ -19,7 +19,9 @@ module.exports = function(config) {
         '../lib/bootstrap.min.js',
         '../lib/angular.min.js',
         '../lib/angular-mocks.js',
+        '../lib/angular-route.min.js',
         '../app/js/*.js',
+        '../app/js/**/*.js',
         '**/*Spec.js'
 
     ],
