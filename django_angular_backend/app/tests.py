@@ -44,6 +44,11 @@ class AngularTest(LiveServerTestCase):
         heading = self.browser.find_element_by_tag_name('h2')
         self.asserEquals(heading, 'Contacts')
 
+        contacts = elf.browser.find_elements_by_tag_name('tr')
+
+        self.asserEquals(len(contacts), 13)
+        self.asserIn("Paul", contacts[3])
+
 
 
 
