@@ -3,7 +3,7 @@ table {
 	min-width: 300px;
 }
 
-table td:first-child{
+#info td:first-child{
 	font-weight: bold;
 	line-height: 2em;
 }

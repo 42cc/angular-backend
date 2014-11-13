@@ -46,8 +46,8 @@ class AngularTest(LiveServerTestCase):
 
         contacts = self.browser.find_elements_by_tag_name('tr')
 
-        self.assertEquals(len(contacts), 13)
-        self.assertIn("Paul", contacts[3].text)
+        self.assertEquals(len(contacts), 14)
+        self.assertIn("Paul", contacts[4].text)
 
 
 

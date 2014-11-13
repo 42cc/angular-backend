@@ -1,1 +1,20 @@
 <h2>Contacts</h2>
+
+<table class="table table-condensed table-hover">
+  <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Cell phone</th>
+        <th>Landline</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="contact in contacts.contacts">
+        <td ng-bind="contact.first_name + ' ' + contact.last_name"></td>
+        <td ng-bind="contact.email"></td>
+        <td ng-bind="contact.cellphone_number"></td>
+        <td ng-bind="contact.phone_number"></td>
+    </tr>
+  </tbody>
+</table>
