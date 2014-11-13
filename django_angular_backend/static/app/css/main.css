@@ -2,3 +2,8 @@ table {
 	margin-top: 20px; 
 	min-width: 300px;
 }
+
+#info td:first-child{
+	font-weight: bold;
+	line-height: 2em;
+}
