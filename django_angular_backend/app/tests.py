@@ -29,7 +29,7 @@ class AngularTest(LiveServerTestCase):
     def test_render_my_info_on_main_page(self):
         self.browser.get(self.live_server_url)
         heading = self.browser.find_element_by_tag_name('h2')
-        self.asserEquals(heading, 'My info')
+        self.assertEquals(heading.text, 'My info')
 
         contact_fields = self.browser.find_elements_by_tag_name('tr')
 
@@ -42,12 +42,12 @@ class AngularTest(LiveServerTestCase):
 
         self.browser.find_element_by_link_text('Contacts').click()
         heading = self.browser.find_element_by_tag_name('h2')
-        self.asserEquals(heading, 'Contacts')
+        self.assertEquals(heading.text, 'Contacts')
 
-        contacts = elf.browser.find_elements_by_tag_name('tr')
+        contacts = self.browser.find_elements_by_tag_name('tr')
 
-        self.asserEquals(len(contacts), 13)
-        self.asserIn("Paul", contacts[3])
+        self.assertEquals(len(contacts), 13)
+        self.assertIn("Paul", contacts[3].text)
 
 
 
