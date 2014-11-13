@@ -17,7 +17,7 @@ myInfo = [
     ('Jabber',        'macruss@jabber.kiev.ua')
 ]
         
-class MyInfoPageTest(LiveServerTestCase):
+class AngularTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -28,10 +28,22 @@ class MyInfoPageTest(LiveServerTestCase):
         
     def test_render_my_info_on_main_page(self):
         self.browser.get(self.live_server_url)
+        heading = self.browser.find_element_by_tag_name('h2')
+        self.asserEquals(heading, 'My info')
 
         contact_fields = self.browser.find_elements_by_tag_name('tr')
 
         for i in range(len(myInfo)):
             self.assertIn(myInfo[i][0], contact_fields[i].text)
             self.assertIn(myInfo[i][1], contact_fields[i].text)
+
+    def test_view_contacts(self):
+        self.browser.get(self.live_server_url)
+
+        self.browser.find_element_by_link_text('Contacts').click()
+        heading = self.browser.find_element_by_tag_name('h2')
+        self.asserEquals(heading, 'Contacts')
+
+
+
 
