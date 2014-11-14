@@ -16,6 +16,11 @@
                     controller: 'ContactsCtrl',
                     controllerAs: 'contacts'
                 })
+                .when('/contacts/:contactId', {
+                    templateUrl: 'static/partials/edit-contact.html',
+                    controller: 'EditContactCtrl',
+                    controllerAs: 'edit'
+                })
                 .otherwise({
                     redirectTo: '/main'
                 });

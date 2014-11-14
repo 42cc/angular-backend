@@ -64,25 +64,25 @@ class AngularTest(LiveServerTestCase):
         self.browser.get(self.live_server_url + '#/contacts/1')
 
         first_name_field = self.browser.find_element_by_css_selector(
-            'input[ng-bind="edit.contact.first_name"]'
+            'input[ng-model="edit.contact.first_name"]'
         )
         first_name_field.clear()
         first_name_field.send_keys("Ruslan")
 
         last_name_field = self.browser.find_element_by_css_selector(
-            'input[ng-bind="edit.contact.last_name"]'
+            'input[ng-model="edit.contact.last_name"]'
         )
         last_name_field.clear()
         last_name_field.send_keys("Makarenko")
 
         email_field = self.browser.find_element_by_css_selector(
-            'input[ng-bind="edit.contact.email"]'
+            'input[ng-model="edit.contact.email"]'
         )
         email_field.clear()
         email_field.send_keys("ruslan.makarenko@gmail.com")
 
         self.browser.find_element_by_css_selector(
-            'button[ng-click="edit.saveContact(edit.contact.id)"]'
+            'button[ng-click="edit.updateContact(edit.contact)"]'
         ).click()
 
         self.browser.get(self.live_server_url + '#/contacts/')
@@ -90,6 +90,6 @@ class AngularTest(LiveServerTestCase):
         contact = self.browser.find_element_by_css_selector('a[href="#/contacts/1"]')
         self.assertEquals(contact.text, "Ruslan Makarenko")
 
-        email = self.browser.find_element_by_css_selector('td[ng-baind="contact.email"]')
+        email = self.browser.find_element_by_css_selector('td[ng-bind="contact.email"]')
         self.assertEquals(email.text, "ruslan.makarenko@gmail.com")
 

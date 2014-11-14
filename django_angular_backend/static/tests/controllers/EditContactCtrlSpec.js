@@ -1,5 +1,6 @@
 describe('Edit Contact Controller', function() {
-    var $httpBackend, $rootScope, createController;
+    var $httpBackend, $rootScope, createController,
+        $routeParams = {contactId: 1};
 
 
     var response = {
@@ -42,14 +43,14 @@ describe('Edit Contact Controller', function() {
 
     beforeEach(inject(function($injector) {
         $httpBackend = $injector.get('$httpBackend');
-        $httpBackend.whenGET('/api/v1/contact/').respond(response);
         $httpBackend.whenGET('/api/v1/contact/1').respond(response.objects[0]);
-        $httpBackend.whenGET('/api/v1/contact/2').respond(response.objects[1]);
+        $httpBackend.whenPUT('/api/v1/contact/1').respond(response.objects[0]);
+
 
         var $controller = $injector.get('$controller');
 
         createController = function() {
-            return $controller('EditContactCtrl', {'$scope' : $rootScope });
+            return $controller('EditContactCtrl', {'$routeParams': $routeParams});
         };
     }));
 
@@ -59,9 +60,17 @@ describe('Edit Contact Controller', function() {
         $httpBackend.verifyNoOutstandingRequest();
     });
 
-    it('calls /api/v1/contact/1', function() {
+    it('send GET request', function() {
         $httpBackend.expectGET('/api/v1/contact/1');
         var ctrl = createController();
+        ctrl.getContact(1);
+        $httpBackend.flush();
+    });
+
+    it('send PUT request', function() {
+        $httpBackend.expectPUT('/api/v1/contact/1');
+        var ctrl = createController();
+        ctrl.updateContact(response.objects[0]);
         $httpBackend.flush();
     });
 
@@ -70,20 +79,7 @@ describe('Edit Contact Controller', function() {
         ctrl.getContact(1);
         $httpBackend.flush();
         expect(ctrl.contact.id).toBe(1);
-    });
-
-    it("should change contact name and save", function() {
-        var ctrl = createController();
-        ctrl.getContact(1);
-        $httpBackend.flush();
-        ctrl.contact.first_name = 'Ruslan';
-        ctrl.contact.last_name = 'Makarenko';
-        ctrl.saveContact(1);
-        $httpBackend.flush();
-        ctrl.getContact(1);
-        $httpBackend.flush();
-        expect(ctrl.contact.first_name).toEqual('Ruslan');
-        expect(ctrl.contact.last_name).toEqual('Makarenko');
+        expect(ctrl.contact.first_name).toEqual("Robert");
     });
 
 });
