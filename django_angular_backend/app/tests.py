@@ -5,9 +5,10 @@ when you run "manage.py test".
 Replace this with more appropriate tests for your application.
 """
 
-from django.core.urlresolvers import reverse
+
 from django.test import LiveServerTestCase
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
 myInfo = [
     ('First Name',    'Ruslan'),
@@ -18,6 +19,7 @@ myInfo = [
 ]
         
 class AngularTest(LiveServerTestCase):
+    fixtures = ['initial_data.json']
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -49,6 +51,45 @@ class AngularTest(LiveServerTestCase):
         self.assertEquals(len(contacts), 14)
         self.assertIn("Paul", contacts[4].text)
 
+    def test_link_edit_contact(self):
+        self.browser.get(self.live_server_url + '#/contacts')
 
+        contact = self.browser.find_element_by_css_selector('a[href="#/contacts/1"]')
+        contact.click()
 
+        heading = self.browser.find_element_by_tag_name('h2')
+        self.assertEquals(heading.text, 'Edit contact')
+
+    def test_editing_contact(self):
+        self.browser.get(self.live_server_url + '#/contacts/1')
+
+        first_name_field = self.browser.find_element_by_css_selector(
+            'input[ng-model="edit.contact.first_name"]'
+        )
+        first_name_field.clear()
+        first_name_field.send_keys("Ruslan")
+
+        last_name_field = self.browser.find_element_by_css_selector(
+            'input[ng-model="edit.contact.last_name"]'
+        )
+        last_name_field.clear()
+        last_name_field.send_keys("Makarenko")
+
+        email_field = self.browser.find_element_by_css_selector(
+            'input[ng-model="edit.contact.email"]'
+        )
+        email_field.clear()
+        email_field.send_keys("ruslan.makarenko@gmail.com")
+
+        self.browser.find_element_by_css_selector(
+            'button[ng-click="edit.updateContact(edit.contact)"]'
+        ).click()
+
+        self.browser.get(self.live_server_url + '#/contacts/')
+
+        contact = self.browser.find_element_by_css_selector('a[href="#/contacts/1"]')
+        self.assertEquals(contact.text, "Ruslan Makarenko")
+
+        email = self.browser.find_element_by_css_selector('td[ng-bind="contact.email"]')
+        self.assertEquals(email.text, "ruslan.makarenko@gmail.com")
 

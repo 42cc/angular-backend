@@ -1,0 +1,33 @@
+<h2>Edit contact</h2>
+<table>
+    <tr>
+        <td>First name</td>
+        <td><input ng-model="edit.contact.first_name"></td>
+    </tr>
+    <tr>
+        <td>Last name</td>
+        <td><input ng-model="edit.contact.last_name"></td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td><input ng-model="edit.contact.email"></td>
+    </tr>
+    <tr>
+        <td>Landline</td>
+        <td><input ng-model="edit.contact.phone_number"></td>
+    </tr>
+    <tr>
+        <td>Phone number</td>
+        <td><input ng-model="edit.contact.cellphone_number"></td>
+    </tr>
+    <tr>
+        <td>Jabber</td>
+        <td><input ng-model="edit.contact.jabber_id"></td>
+    </tr>
+    <tr>
+        <td>Date of birth</td>
+        <td><input ng-model="edit.contact.birh_date"></td>
+    </tr>
+</table>
+
+<button ng-click="edit.updateContact(edit.contact)">Save</button>
