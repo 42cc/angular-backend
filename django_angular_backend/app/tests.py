@@ -8,7 +8,7 @@ Replace this with more appropriate tests for your application.
 
 from django.test import LiveServerTestCase
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+
 
 myInfo = [
     ('First Name',    'Ruslan'),
@@ -93,3 +93,13 @@ class AngularTest(LiveServerTestCase):
         email = self.browser.find_element_by_css_selector('td[ng-bind="contact.email"]')
         self.assertEquals(email.text, "ruslan.makarenko@gmail.com")
 
+
+    def test_search_on_contacts(self):
+        self.browser.get(self.live_server_url + '#/contacts')
+
+        search_field = self.browser.find_element_by_css_selector('input[ng-bind="contacts.search"]')
+        search_field.send_keys('Abbott')
+
+        contacts = self.browser.find_elements_by_css_selector('td a[ng-href]')
+        self.assertEquals(len(contacts), 1)
+        self.assertEquals(contacts[0].text, 'Robert Abbot')
