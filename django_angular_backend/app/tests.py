@@ -8,7 +8,7 @@ Replace this with more appropriate tests for your application.
 
 from django.test import LiveServerTestCase
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+
 
 myInfo = [
     ('First Name',    'Ruslan'),
@@ -46,15 +46,24 @@ class AngularTest(LiveServerTestCase):
         heading = self.browser.find_element_by_tag_name('h2')
         self.assertEquals(heading.text, 'Contacts')
 
-        contacts = self.browser.find_elements_by_tag_name('tr')
+        contacts = self.browser.find_elements_by_css_selector('a[ng-href]')
 
-        self.assertEquals(len(contacts), 14)
-        self.assertIn("Paul", contacts[4].text)
+        self.assertEquals(len(contacts), 5)
+        self.assertIn("Leonard", contacts[4].text)
+
+    def _change_items_per_page(self):
+        items_per_page = self.browser.find_element_by_css_selector('#items-per-page')
+        for option in items_per_page.find_elements_by_tag_name('option'):
+            if option.text == '20':
+                option.click()
+                break
 
     def test_link_edit_contact(self):
         self.browser.get(self.live_server_url + '#/contacts')
 
-        contact = self.browser.find_element_by_css_selector('a[href="#/contacts/1"]')
+        self._change_items_per_page()
+
+        contact = self.browser.find_element_by_css_selector('a[ng-href="#/contacts/1"]')
         contact.click()
 
         heading = self.browser.find_element_by_tag_name('h2')
@@ -86,10 +95,84 @@ class AngularTest(LiveServerTestCase):
         ).click()
 
         self.browser.get(self.live_server_url + '#/contacts/')
+        self._change_items_per_page()
 
-        contact = self.browser.find_element_by_css_selector('a[href="#/contacts/1"]')
+        contact = self.browser.find_element_by_css_selector('a[ng-href="#/contacts/1"]')
         self.assertEquals(contact.text, "Ruslan Makarenko")
 
-        email = self.browser.find_element_by_css_selector('td[ng-bind="contact.email"]')
-        self.assertEquals(email.text, "ruslan.makarenko@gmail.com")
+    def test_search_on_contacts(self):
+        self.browser.get(self.live_server_url + '#/contacts')
 
+        search_field = self.browser.find_element_by_css_selector('input[ng-model="contacts.search"]')
+        search_field.send_keys('Abbott')
+
+        contacts = self.browser.find_elements_by_css_selector('td a[ng-href]')
+        self.assertEquals(len(contacts), 1)
+        self.assertEquals(contacts[0].text, 'Robert Abbott')
+
+    def test_order_by_contacts(self):
+        self.browser.get(self.live_server_url + '#/contacts')
+
+        order_by = self.browser.find_element_by_css_selector('#order-by')
+
+        for option in order_by.find_elements_by_tag_name('option'):
+            if option.text == 'Name':
+                option.click()
+                break
+
+        contacts = self.browser.find_elements_by_css_selector('td a[ng-href]')
+        self.assertEquals(contacts[0].text, 'Bruce Ableson')
+
+        for option in order_by.find_elements_by_tag_name('option'):
+            if option.text == 'Date of birth':
+                option.click()
+                break
+
+        dates_of_birth = self.browser.find_elements_by_css_selector('td[ng-bind="contact.birth_date"]')
+        self.assertEquals(dates_of_birth[0].text, '1933-03-02')
+        self.assertEquals(dates_of_birth[1].text, '1945-12-31')
+
+    def test_page_pagination(self):
+        self.browser.get(self.live_server_url + '#/contacts')
+
+        items_per_page = self.browser.find_element_by_css_selector('#items-per-page')
+
+        def change_option_items_per_page(items):
+            for option in items_per_page.find_elements_by_tag_name('option'):
+                if option.text == items:
+                    option.click()
+                    break
+
+        change_option_items_per_page('10')
+
+        order_by = self.browser.find_element_by_css_selector('#order-by')
+        for option in order_by.find_elements_by_tag_name('option'):
+            if option.text == 'Name':
+                option.click()
+                break
+
+        contacts = self.browser.find_elements_by_css_selector('a[ng-href]')
+        self.assertEquals(len(contacts), 10)
+
+        contact1_5 = contacts[5].text
+        contact1_4 = contacts[4].text
+
+        change_option_items_per_page('5')
+
+        next_btn = self.browser.find_element_by_link_text('NEXT')
+        prev_btn = self.browser.find_element_by_link_text('PREV')
+
+        next_btn.click()
+
+        contacts2 = self.browser.find_elements_by_css_selector('a[ng-href]')
+        self.assertEquals(len(contacts2), 5)
+
+        contact2 = contacts2[0].text
+        self.assertEquals(contact1_5, contact2)
+
+        prev_btn.click()
+
+        contacts3 = self.browser.find_elements_by_css_selector('a[ng-href]')
+
+        contact3 = contacts3[4].text
+        self.assertEquals(contact1_4, contact3)

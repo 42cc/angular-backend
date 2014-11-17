@@ -1,4 +1,18 @@
 <h2>Contacts</h2>
+<label>
+  Search: 
+  <input type="text" ng-model="contacts.search">
+</label>
+
+Order by: 
+<select  id="order-by" ng-model="contacts.orderByProp" 
+                       ng-options="prop.title for prop in contacts.orderByProps">
+                       </select>
+
+Items per page: 
+<select id="items-per-page" ng-model="contacts.pageSize" 
+                            ng-options="size for size in contacts.pageSizes">
+                            </select>
 
 <table class="table table-condensed table-hover">
   <thead>
@@ -7,15 +21,38 @@
         <th>Email</th>
         <th>Cell phone</th>
         <th>Landline</th>
+        <th>Date of birth</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="contact in contacts.contacts">
+    <tr ng-repeat="contact in contacts.contacts | filter:contacts.search 
+                                                | orderBy:contacts.orderByProp.predicate 
+                                                | pagination:contacts.curPage * contacts.pageSize 
+                                                | limitTo:contacts.pageSize">
         <td><a ng-href="#/contacts/{{contact.id}}" 
                ng-bind="contact.first_name + ' ' + contact.last_name"></a></td>
         <td ng-bind="contact.email"></td>
-        <td ng-bind="contact.cellphone_number"></td>
-        <td ng-bind="contact.phone_number"></td>
+        <td ng-bind="contact.cellphone_number | countrycode"></td>
+        <td ng-bind="contact.phone_number | countrycode"></td>
+        <td ng-bind="contact.birth_date"></td>
     </tr>
   </tbody>
 </table>
+
+<div class="pagination" ng-show="contacts.contacts.length">
+  <ul>
+    <li>
+      <a class="btn" ng-disabled="contacts.isFirstPage()" ng-click="contacts.prevPage()">
+        PREV
+      </a>
+    </li>
+    <li>
+      <span ng-bind="'Page ' + (contacts.curPage + 1) + ' of ' + contacts.numberOfPages()"></span>
+    </li>
+    <li>
+      <a class="btn" ng-disabled="contacts.isLastPage()" ng-click="contacts.nextPage()">
+        NEXT
+      </a>
+    </li>
+  </ul>
+</div>
