@@ -97,12 +97,12 @@ class AngularTest(LiveServerTestCase):
     def test_search_on_contacts(self):
         self.browser.get(self.live_server_url + '#/contacts')
 
-        search_field = self.browser.find_element_by_css_selector('input[ng-bind="contacts.search"]')
+        search_field = self.browser.find_element_by_css_selector('input[ng-model="contacts.search"]')
         search_field.send_keys('Abbott')
 
         contacts = self.browser.find_elements_by_css_selector('td a[ng-href]')
         self.assertEquals(len(contacts), 1)
-        self.assertEquals(contacts[0].text, 'Robert Abbot')
+        self.assertEquals(contacts[0].text, 'Robert Abbott')
 
     def test_order_by_contacts(self):
         self.browser.get(self.live_server_url + '#/contacts')
@@ -161,4 +161,4 @@ class AngularTest(LiveServerTestCase):
         prev_btn.click()
 
         contacts2 = self.browser.find_elements_by_css_selector('a[ng-href]')
-        self.assertEquals(contacts[4].text, contacts2[4])
+        self.assertEquals(contacts[4].text, contacts2[4].text)

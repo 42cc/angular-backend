@@ -9,6 +9,7 @@
     function ContactsCtrl(contacts) {
         var vm = this;
         vm.contacts = [];
+        vm.search = '';
 
         getContacts();
 
