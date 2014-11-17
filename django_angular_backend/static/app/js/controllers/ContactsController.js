@@ -9,7 +9,14 @@
     function ContactsCtrl(contacts) {
         var vm = this;
         vm.contacts = [];
-        vm.search = '';
+        vm.orderByProps = [
+            {title:'Name', predicate:'first_name'},
+            {title:'Email', predicate:'email'},
+            {title:'Cell phone', predicate:'cellphone_number'},
+            {title:'Landline', predicate:'phone_number'},
+            {title:'Date of birth', predicate:'birth_date'},
+        ];
+        vm.orderByProp = vm.orderByProps[0];
 
         getContacts();
 
