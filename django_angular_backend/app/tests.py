@@ -107,7 +107,7 @@ class AngularTest(LiveServerTestCase):
     def test_order_by_contacts(self):
         self.browser.get(self.live_server_url + '#/contacts')
 
-        order_by = self.browser.find_element_by_css_selector('select #order-by')
+        order_by = self.browser.find_element_by_css_selector('#order-by')
 
         for option in order_by.find_elements_by_tag_name('option'):
             if option.text == 'Name':
@@ -126,4 +126,39 @@ class AngularTest(LiveServerTestCase):
         self.assertEquals(dates_of_birth[0], '1933-03-02')
         self.assertEquals(dates_of_birth[1], '1945-12-31')
 
+    def test_page_pagination(self):
+        self.browser.get(self.live_server_url + '#/contacts')
 
+        items_per_page = self.browser.find_element_by_css_selector('#items-per-page')
+        for option in items_per_page.find_elements_by_tag_name('option'):
+            if option.text == '10':
+                option.click()
+                break
+
+        order_by = self.browser.find_element_by_css_selector('#order-by')
+        for option in order_by.find_elements_by_tag_name('option'):
+            if option.text == 'Name':
+                option.click()
+                break
+
+        contacts = self.browser.find_elements_by_css_selector('a[ng-href]')
+        self.assertEquals(len(contacts), 10)
+
+        for option in items_per_page.find_elements_by_tag_name('option'):
+            if option.text == '5':
+                option.click()
+                break
+
+        next_btn = self.browser.find_element_by_link_text('NEXT')
+        prev_btn = self.browser.find_element_by_link_text('PREV')
+
+        next_btn.click()
+
+        contacts2 = self.browser.find_elements_by_css_selector('a[ng-href]')
+        self.assertEquals(len(contacts2), 5)
+        self.assertEquals(contacts[5].text, contacts2[0])
+
+        prev_btn.click()
+
+        contacts2 = self.browser.find_elements_by_css_selector('a[ng-href]')
+        self.assertEquals(contacts[4].text, contacts2[4])
