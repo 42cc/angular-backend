@@ -19,7 +19,7 @@
         vm.orderByProp = vm.orderByProps[0];
         vm.curPage = 0;
         vm.pageSize = 5;
-        vm.pageSizes = [2, 5, 10];
+        vm.pageSizes = [2, 5, 10, 20];
         vm.numberOfPages = numberOfPages;
         vm.isLastPage = isLastPage;
         vm.isFirstPage = isFirstPage;
