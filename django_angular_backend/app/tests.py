@@ -176,3 +176,116 @@ class AngularTest(LiveServerTestCase):
 
         contact3 = contacts3[4].text
         self.assertEquals(contact1_4, contact3)
+
+
+class ValidationTest(LiveServerTestCase):
+    fixtures = ['initial_data.json']
+
+    def setUp(self):
+        self.browser = webdriver.Firefox()
+        self.browser.implicitly_wait(3)
+
+    def tearDown(self):
+        self.browser.quit()
+
+    def test_required_fields(self):
+        self.browser.get(self.live_server_url + '#/contacts/1')
+
+        submit_error_msg = self.browser.find_elements_by_id('error_msg')
+        save_btn = self.browser.find_element_by_name('cSave"]')
+
+
+        first_name_field = self.browser.find_element_by_name('cName')
+        first_name_field.clear()
+
+        fn_message = self.browser.find_element_by_css_selector('span[ng-show="!edit.contact.first_name"]')
+        self.assertEquals(first_name_field.value_of_css_property('background-color'), '#EF7E7E')
+        self.assertEquals(fn_message.is_displayed(), True)
+        self.assertEquals(submit_error_msg.is_displayed(), True)
+        self.assertFalse(save_btn.is_enabled())
+
+
+        first_name_field.send_keys("Ruslan")
+        self.assertEquals(first_name_field.value_of_css_property('background-color'), '#8CD95E')
+        self.assertEquals(fn_message.is_displayed(), False)
+        self.assertEquals(submit_error_msg.is_displayed(), False)
+        self.assertTrue(save_btn.is_enabled())
+
+        last_name_field = self.browser.find_element_by_name('cSurname')
+        last_name_field.clear()
+
+        ln_message = self.browser.find_element_by_css_selector('span[ng-show="!edit.contact.last_name"]')
+        self.assertEquals(first_name_field.value_of_css_property('background-color'), '#EF7E7E')
+        self.assertEquals(ln_message.is_displayed(), True)
+        self.assertEquals(submit_error_msg.is_displayed(), True)
+        self.assertFalse(save_btn.is_enabled())
+
+
+        last_name_field.send_keys("Makarenko")
+        self.assertEquals(first_name_field.value_of_css_property('background-color'), '#8CD95E')
+        self.assertEquals(ln_message.is_displayed(), False)
+        self.assertEquals(submit_error_msg.is_displayed(), False)
+        self.assertTrue(save_btn.is_enabled())
+
+    def test_valitaion_email_field(self):
+        self.browser.get(self.live_server_url + '#/contacts/1')
+
+        save_btn = self.browser.find_element_by_name('cSave"]')
+        email = self.browser.find_element_by_name('cEmail')
+        email.clear()
+
+        message = self.browser.find_element_by_css_selector('[ng-show="form.cEmail.$error.email"]')
+        submit_error_msg = self.browser.find_elements_by_id('error_msg')
+
+        email.send_keys('name')
+
+        self.assertTrue(message.is_displayed())
+        self.assertTrue(submit_error_msg.is_displayed())
+        self.assertEquals(email.value_of_css_property('background-color'), '#EF7E7E')
+        self.assertFalse(save_btn.is_enabled())
+
+        email.send_keys('name@example.com')
+
+        self.assertFalse(message.is_displayed())
+        self.assertFalse(submit_error_msg.is_displayed())
+        self.assertEquals(email.value_of_css_property('background-color'), '#8CD95E')
+        self.assertTrue(save_btn.is_enabled())
+
+    def test_validation_phone_number(self):
+        self.browser.get(self.live_server_url + '#/contacts/1')
+
+        submit_error_msg = self.browser.find_elements_by_id('error_msg')
+        save_btn = self.browser.find_element_by_name('cSave"]')
+
+        msg_phone = self.browser.find_element_by_css_selector(
+            '[ng-show="form.phoneNumber.$error.phoneNumber"]'
+        )
+        msg_cellphone = self.browser.find_element_by_css_selector(
+            '[ng-show="form.cellPhoneNumber.$error.phoneNumber"]'
+        )
+
+        phone = self.browser.find_element_by_name('phoneNumber')
+        cellphone = self.browser.find_element_by_name('cellPhoneNumber')
+
+        def phone_field_testing(phone, msg):
+            phone.send_keys('12345678910')
+            self.assertTrue(msg.is_displayed())
+            self.assertTrue(submit_error_msg.is_displayed())
+            self.assertFalse(save_btn.is_enabled())
+
+            phone.send_keys('+123456789')
+            self.assertTrue(msg.is_displayed())
+            self.assertTrue(submit_error_msg.is_displayed())
+            self.assertFalse(save_btn.is_enabled())
+
+            phone.send_keys('+12345678910')
+            self.assertFalse(msg.is_displayed())
+            self.assertFalse(submit_error_msg.is_displayed())
+            self.assertTrue(save_btn.is_enabled())
+
+        phone_field_testing(phone, msg_phone)
+
+        phone_field_testing(cellphone, msg_cellphone)
+
+
+
