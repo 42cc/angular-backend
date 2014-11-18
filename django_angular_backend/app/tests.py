@@ -189,24 +189,26 @@ class ValidationTest(LiveServerTestCase):
         self.browser.quit()
 
     def test_required_fields(self):
+        red = 'rgba(239, 126, 126, 1)'
+        green = 'rgba(140, 217, 94, 1)'
         self.browser.get(self.live_server_url + '#/contacts/1')
 
-        submit_error_msg = self.browser.find_elements_by_id('error_msg')
-        save_btn = self.browser.find_element_by_name('cSave"]')
+        submit_error_msg = self.browser.find_element_by_id('error_msg')
+        save_btn = self.browser.find_element_by_name('Submit')
 
 
         first_name_field = self.browser.find_element_by_name('cName')
         first_name_field.clear()
 
-        fn_message = self.browser.find_element_by_css_selector('span[ng-show="!edit.contact.first_name"]')
-        self.assertEquals(first_name_field.value_of_css_property('background-color'), '#EF7E7E')
+        fn_message = self.browser.find_element_by_css_selector('span[ng-show="form.cName.$error.required"]')
+        self.assertEquals(first_name_field.value_of_css_property('background-color'), red)
         self.assertEquals(fn_message.is_displayed(), True)
         self.assertEquals(submit_error_msg.is_displayed(), True)
         self.assertFalse(save_btn.is_enabled())
 
 
         first_name_field.send_keys("Ruslan")
-        self.assertEquals(first_name_field.value_of_css_property('background-color'), '#8CD95E')
+        self.assertEquals(first_name_field.value_of_css_property('background-color'), green)
         self.assertEquals(fn_message.is_displayed(), False)
         self.assertEquals(submit_error_msg.is_displayed(), False)
         self.assertTrue(save_btn.is_enabled())
@@ -214,48 +216,50 @@ class ValidationTest(LiveServerTestCase):
         last_name_field = self.browser.find_element_by_name('cSurname')
         last_name_field.clear()
 
-        ln_message = self.browser.find_element_by_css_selector('span[ng-show="!edit.contact.last_name"]')
-        self.assertEquals(first_name_field.value_of_css_property('background-color'), '#EF7E7E')
+        ln_message = self.browser.find_element_by_css_selector('span[ng-show="form.cSurname.$error.required"]')
+        self.assertEquals(last_name_field.value_of_css_property('background-color'), red)
         self.assertEquals(ln_message.is_displayed(), True)
         self.assertEquals(submit_error_msg.is_displayed(), True)
         self.assertFalse(save_btn.is_enabled())
 
 
         last_name_field.send_keys("Makarenko")
-        self.assertEquals(first_name_field.value_of_css_property('background-color'), '#8CD95E')
+        self.assertEquals(last_name_field.value_of_css_property('background-color'), green)
         self.assertEquals(ln_message.is_displayed(), False)
         self.assertEquals(submit_error_msg.is_displayed(), False)
         self.assertTrue(save_btn.is_enabled())
 
     def test_valitaion_email_field(self):
+        red = 'rgba(239, 126, 126, 1)'
+        green = 'rgba(140, 217, 94, 1)'
         self.browser.get(self.live_server_url + '#/contacts/1')
 
-        save_btn = self.browser.find_element_by_name('cSave"]')
+        save_btn = self.browser.find_element_by_name('Submit')
         email = self.browser.find_element_by_name('cEmail')
         email.clear()
 
         message = self.browser.find_element_by_css_selector('[ng-show="form.cEmail.$error.email"]')
-        submit_error_msg = self.browser.find_elements_by_id('error_msg')
+        submit_error_msg = self.browser.find_element_by_id('error_msg')
 
         email.send_keys('name')
 
         self.assertTrue(message.is_displayed())
         self.assertTrue(submit_error_msg.is_displayed())
-        self.assertEquals(email.value_of_css_property('background-color'), '#EF7E7E')
+        self.assertEquals(email.value_of_css_property('background-color'), red)
         self.assertFalse(save_btn.is_enabled())
 
         email.send_keys('name@example.com')
 
         self.assertFalse(message.is_displayed())
         self.assertFalse(submit_error_msg.is_displayed())
-        self.assertEquals(email.value_of_css_property('background-color'), '#8CD95E')
+        self.assertEquals(email.value_of_css_property('background-color'), green)
         self.assertTrue(save_btn.is_enabled())
 
     def test_validation_phone_number(self):
         self.browser.get(self.live_server_url + '#/contacts/1')
 
-        submit_error_msg = self.browser.find_elements_by_id('error_msg')
-        save_btn = self.browser.find_element_by_name('cSave"]')
+        submit_error_msg = self.browser.find_element_by_id('error_msg')
+        save_btn = self.browser.find_element_by_name('Submit')
 
         msg_phone = self.browser.find_element_by_css_selector(
             '[ng-show="form.phoneNumber.$error.phoneNumber"]'

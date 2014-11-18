@@ -1,33 +1,43 @@
 <h2>Edit contact</h2>
-<table>
+<form name="form" class="contact-form" novalidate>
+  <table>
     <tr>
-        <td>First name</td>
-        <td><input ng-model="edit.contact.first_name"></td>
+      <td>First name</td>
+      <td><input ng-model="edit.contact.first_name" name="cName" required></td>
+      <td><span ng-show="form.cName.$error.required">* Required field</span></td>
     </tr>
     <tr>
-        <td>Last name</td>
-        <td><input ng-model="edit.contact.last_name"></td>
+      <td>Last name</td>
+      <td><input ng-model="edit.contact.last_name" name="cSurname" required></td>
+      <td><span ng-show="form.cSurname.$error.required">* Required field</span></td>
     </tr>
     <tr>
-        <td>Email</td>
-        <td><input ng-model="edit.contact.email"></td>
+      <td>Email</td>
+      <td><input ng-model="edit.contact.email" name="email"></td>
+      <td><span></span></td>
     </tr>
     <tr>
-        <td>Landline</td>
-        <td><input ng-model="edit.contact.phone_number"></td>
+      <td>Landline</td>
+      <td><input ng-model="edit.contact.phone_number"></td>
+      <td><span></span></td>
     </tr>
     <tr>
-        <td>Phone number</td>
-        <td><input ng-model="edit.contact.cellphone_number"></td>
+      <td>Phone number</td>
+      <td><input ng-model="edit.contact.cellphone_number"></td>
+      <td><span></span></td>
     </tr>
     <tr>
-        <td>Jabber</td>
-        <td><input ng-model="edit.contact.jabber_id"></td>
+      <td>Jabber</td>
+      <td><input ng-model="edit.contact.jabber_id"></td>
+      <td></td>
     </tr>
     <tr>
-        <td>Date of birth</td>
-        <td><input ng-model="edit.contact.birh_date"></td>
+      <td>Date of birth</td>
+      <td><input ng-model="edit.contact.birh_date"></td>
+      <td></td>
     </tr>
-</table>
+  </table>
 
-<button ng-click="edit.updateContact(edit.contact)">Save</button>
+  <button class="btn" ng-click="edit.updateContact(edit.contact)" name="Submit" ng-disabled="form.$invalid">Save</button>
+  <span id="error_msg" ng-show="form.$invalid">Has errors</span>
+</form>
