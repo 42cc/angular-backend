@@ -13,18 +13,30 @@
     </tr>
     <tr>
       <td>Email</td>
-      <td><input type="email" ng-model="edit.contact.email" name="cEmail"></td>
-      <td><span ng-show="form.cEmail.$error.email">This is not a valid email.</span></td>
+      <td>
+        <input type="email" ng-model="edit.contact.email" name="cEmail">
+      </td>
+      <td>
+        <span ng-show="form.cEmail.$error.email">This is not a valid email.</span>
+      </td>
     </tr>
     <tr>
       <td>Landline</td>
-      <td><input ng-model="edit.contact.phone_number"></td>
-      <td><span></span></td>
+      <td>
+        <input ng-model="edit.contact.phone_number" name="phoneNumber" phone-number>
+      </td>
+      <td>
+        <span ng-show="form.phoneNumber.$error.phoneNumber">* Value must starts with "+" and contains 11 numbers</span>
+      </td>
     </tr>
     <tr>
       <td>Phone number</td>
-      <td><input ng-model="edit.contact.cellphone_number"></td>
-      <td><span></span></td>
+      <td>
+        <input ng-model="edit.contact.cellphone_number" name="cellPhoneNumber" phone-number>
+      </td>
+      <td>
+        <span ng-show="form.cellPhoneNumber.$error.phoneNumber">* Value must starts with "+" and contains 11 numbers</span>
+      </td>
     </tr>
     <tr>
       <td>Jabber</td>
@@ -33,7 +45,9 @@
     </tr>
     <tr>
       <td>Date of birth</td>
-      <td><input ng-model="edit.contact.birh_date"></td>
+      <td>
+        <input ng-model="edit.contact.birh_date">
+      </td>
       <td></td>
     </tr>
   </table>

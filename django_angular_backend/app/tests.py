@@ -277,11 +277,13 @@ class ValidationTest(LiveServerTestCase):
             self.assertTrue(submit_error_msg.is_displayed())
             self.assertFalse(save_btn.is_enabled())
 
+            phone.clear()
             phone.send_keys('+123456789')
             self.assertTrue(msg.is_displayed())
             self.assertTrue(submit_error_msg.is_displayed())
             self.assertFalse(save_btn.is_enabled())
 
+            phone.clear()
             phone.send_keys('+12345678910')
             self.assertFalse(msg.is_displayed())
             self.assertFalse(submit_error_msg.is_displayed())
