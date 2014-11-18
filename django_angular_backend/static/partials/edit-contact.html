@@ -13,8 +13,8 @@
     </tr>
     <tr>
       <td>Email</td>
-      <td><input ng-model="edit.contact.email" name="email"></td>
-      <td><span></span></td>
+      <td><input type="email" ng-model="edit.contact.email" name="cEmail"></td>
+      <td><span ng-show="form.cEmail.$error.email">This is not a valid email.</span></td>
     </tr>
     <tr>
       <td>Landline</td>

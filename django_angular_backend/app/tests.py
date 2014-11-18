@@ -229,7 +229,7 @@ class ValidationTest(LiveServerTestCase):
         self.assertEquals(submit_error_msg.is_displayed(), False)
         self.assertTrue(save_btn.is_enabled())
 
-    def test_valitaion_email_field(self):
+    def test_validation_email_field(self):
         red = 'rgba(239, 126, 126, 1)'
         green = 'rgba(140, 217, 94, 1)'
         self.browser.get(self.live_server_url + '#/contacts/1')
