@@ -3,7 +3,7 @@ describe('ticket 1: Show my name, surname, bio, contacts on the main page ', fun
  
 
  it('should have a correct title', function() {
-    browser.get('http://127.0.0.1/static/tickets/01/index.html');
+    browser.get('http://127.0.0.1:8000/static/tickets/01/index.html');
 
  
     expect(browser.getTitle()).toEqual('42cc-Contacts-Ticket 1')
@@ -36,7 +36,7 @@ describe('ticket 1: Show my name, surname, bio, contacts on the main page ', fun
   });
 
   it('should display my jabber', function() {
-    expect(element(by.binding('my.contact.jabber')).getText()).toEqual('schehlovd@42cc.co');
+    expect(element(by.binding('my.contact.jabber')).getText()).toEqual('scheglovd@42cc.co');
   });
 
   it('should display other info avbout me', function() {
