@@ -1,0 +1,11 @@
+
+.contact-field {
+padding-top: 5px;
+padding-bottom: 5px;
+margin : 10px;
+font-weight: normal;
+}
+.contact-field .title {
+display: none;
+font-weight: bold;
+}
