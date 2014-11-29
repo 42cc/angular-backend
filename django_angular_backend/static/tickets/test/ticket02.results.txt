@@ -1,0 +1,25 @@
+INFO [karma]: Karma v0.12.28 server started at http://localhost:9876/
+INFO [launcher]: Starting browser Firefox
+INFO [launcher]: Starting browser Chrome
+INFO [Chrome 39.0.2171 (Linux)]: Connected on socket MIDFcR7lfPYIOXBjmCVC with id 44051371
+Chrome 39.0.2171 (Linux): Executed 0 of 4 SUCCESS (0 secs / 0 secs)
+INFO [Firefox 31.0.0 (Ubuntu)]: Connected on socket O0Mbnw0T0eRekmJ7mCVD with id 722988
+Chrome 39.0.2171 (Linux): Executed 1 of 4 SUCCESS (0 secs / 0.116 secs)
+Chrome 39.0.2171 (Linux): Executed 2 of 4 SUCCESS (0 secs / 0.131 secs)
+Chrome 39.0.2171 (Linux): Executed 3 of 4 SUCCESS (0 secs / 0.146 secs)
+Chrome 39.0.2171 (Linux): Executed 4 of 4 SUCCESS (0 secs / 0.153 secs)
+Chrome 39.0.2171 (Linux): Executed 4 of 4 SUCCESS (0.185 secs / 0.153 secs)
+
+Chrome 39.0.2171 (Linux): Executed 4 of 4 SUCCESS (0.185 secs / 0.153 secs)
+Firefox 31.0.0 (Ubuntu): Executed 0 of 4 SUCCESS (0 secs / 0 secs)
+Chrome 39.0.2171 (Linux): Executed 4 of 4 SUCCESS (0.185 secs / 0.153 secs)
+Firefox 31.0.0 (Ubuntu): Executed 1 of 4 SUCCESS (0 secs / 0.055 secs)
+Chrome 39.0.2171 (Linux): Executed 4 of 4 SUCCESS (0.185 secs / 0.153 secs)
+Firefox 31.0.0 (Ubuntu): Executed 2 of 4 SUCCESS (0 secs / 0.066 secs)
+Chrome 39.0.2171 (Linux): Executed 4 of 4 SUCCESS (0.185 secs / 0.153 secs)
+Firefox 31.0.0 (Ubuntu): Executed 3 of 4 SUCCESS (0 secs / 0.091 secs)
+Chrome 39.0.2171 (Linux): Executed 4 of 4 SUCCESS (0.185 secs / 0.153 secs)
+Firefox 31.0.0 (Ubuntu): Executed 4 of 4 SUCCESS (0 secs / 0.101 secs)
+Chrome 39.0.2171 (Linux): Executed 4 of 4 SUCCESS (0.185 secs / 0.153 secs)
+Firefox 31.0.0 (Ubuntu): Executed 4 of 4 SUCCESS (0.12 secs / 0.101 secs)
+TOTAL: 8 SUCCESS
