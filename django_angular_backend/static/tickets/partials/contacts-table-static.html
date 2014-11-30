@@ -1,0 +1,26 @@
+<table class='table table-striped'>
+	<tr>
+		<th >Name:</th>
+		<th class='col-sm-4'>Email:</th>
+		<th class='col-sm-2'>Cell phone:</th>
+		<th class='col-sm-2'>Landline:</th>
+	</tr>
+	
+		<tr ng-repeat='c in contacts'>
+			<td>
+				<a href="#/contacts/{{c.id}}">
+					{{c.first_name+' '+c.last_name}}
+				</a>
+			</td>
+			<td>
+				{{c.email}}
+			</td>
+			<td>
+				{{c.cellphone_number}}
+			</td>
+			<td>
+				{{c.phone_number}}
+			</td>
+		</tr>
+	
+</table>

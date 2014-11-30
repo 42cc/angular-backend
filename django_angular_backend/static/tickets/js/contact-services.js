@@ -11,14 +11,16 @@
 
 			var Contact = $resource('/api/v1/contact/:id', {id : "@id"},					
 				{
-					query: {
+					'query': {
 						method:'GET', 
 						transformResponse : appendResponseTransformers(), 
 						isArray:true
+					},
+					'update' : {
+						method : 'PUT'
 					}
 				}
-			);
-		
+			);		
 
 			return Contact;
 

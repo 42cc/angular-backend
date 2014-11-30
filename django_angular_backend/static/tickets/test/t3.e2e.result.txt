@@ -1,0 +1,25 @@
+[launcher] Running 2 instances of WebDriver
+.............................................
+------------------------------------
+[chrome #2] PID: 28604
+[chrome #2] Using the selenium server at http://localhost:4444/wd/hub
+[chrome #2] ........................
+[chrome #2] 
+[chrome #2] Finished in 9.73 seconds
+[chrome #2] 24 tests, 25 assertions, 0 failures
+[chrome #2] 
+
+.[launcher] 1 instance(s) of WebDriver still running
+..
+------------------------------------
+[firefox #1] PID: 28603
+[firefox #1] Using the selenium server at http://localhost:4444/wd/hub
+[firefox #1] ........................
+[firefox #1] 
+[firefox #1] Finished in 9.312 seconds
+[firefox #1] 24 tests, 25 assertions, 0 failures
+[firefox #1] 
+
+[launcher] 0 instance(s) of WebDriver still running
+[launcher] firefox #1 passed
+[launcher] chrome #2 passed

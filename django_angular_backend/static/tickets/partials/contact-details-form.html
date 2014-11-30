@@ -1,0 +1,75 @@
+<form ng-submit="manager.save()" name="contactDetailsForm" class="form-horizontal">
+	<input type="hidden" name="id" ng-model="manager.contact.id"/>
+	<div class="row formrow">
+		<div class="field-group col-sm-4">
+			<label for="fldName" class="col-sm-4 control-label">Name:</label>
+		    <div class="col-sm-8">
+		      <input type="text" class="form-control" id="fldName" ng-model="manager.contact.first_name">
+		    </div>
+		</div>
+		<div class="field-group col-sm-4">
+			<label for="fldLastName" class="col-sm-4 control-label">Last name:</label>
+		    <div class="col-sm-8">
+		      <input type="text" class="form-control" id="fldLastName" ng-model="manager.contact.last_name">
+		    </div>
+		</div>
+	</div>
+	<div class="row formrow">
+		<div class="field-group col-sm-4">
+			<label for="fldEmail" class="col-sm-4 control-label">Email:</label>
+		    <div class="col-sm-8">
+		      <input type="text" class="form-control" id="fldEmail" ng-model="manager.contact.email">
+		    </div>
+		</div>
+	</div>
+	<div class="row formrow">	
+		<div class="field-group col-sm-4">
+			<label for="fldCellPahone" class="col-sm-4 control-label">Cell phone:</label>
+		    <div class="col-sm-8">
+		      <input type="text" class="form-control" id="fldCellPhone" ng-model="manager.contact.cellphone_number">
+		    </div>
+		</div>
+	</div>
+	<div class="row formrow">
+		<div class="field-group col-sm-4">
+			<label for="fldLandLine" class="col-sm-4 control-label">Land line:</label>
+		    <div class="col-sm-8">
+		      <input type="text" class="form-control" id="fldLandLine" ng-model="manager.contact.phone_number">
+		    </div>
+		</div>
+	</div>
+	<div class="row formrow">
+		<div class="field-group col-sm-4">
+			<label for="fldBirthday" class="col-sm-4 control-label">Birthday:</label>
+		    <div class="col-sm-8">
+		      <input type="text" class="form-control" id="fldBirthday" ng-model="manager.contact.birth_date">
+		    </div>
+		</div>	
+	</div>
+	<div class="row formrow">
+		<div class="field-group col-sm-4">
+			<label for="fldJabberId" class="col-sm-4 control-label">JID:</label>
+		    <div class="col-sm-8">
+		      <input type="text" class="form-control" id="fldJabberId" ng-model="manager.contact.jabber_id">
+		    </div>
+		</div>
+	</div>
+	<div class="row formrow">
+		<div class="field-group col-sm-4">
+			<div class="col-sm-offset-4 col-sm-8">
+				<button type="submit" id="btnSave" class="btn btn-primary" ng-disabled="!self.allowSave()">
+					<span ng-hide="self.isRunning()">Save</span>
+					<span ng-show="self.isRunning()">Processing ...</span>
+				</button>
+				<small ng-show="self.showResult()" class='text-info'>{{manager.resultMessage}}</small>
+			</div>
+		</div>
+	</div>
+	<div class="row formrow">
+		<div class="field-group col-sm-4">
+			<div class="col-sm-offset-4 col-sm-8">
+				<a href='#/contacts'>&lt; Back to all contacts</a>
+			</div>
+		</div>
+	</div>
+</form>

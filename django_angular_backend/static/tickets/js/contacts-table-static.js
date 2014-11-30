@@ -1,5 +1,5 @@
 (function() {
-
+"use strict"
 	var app = angular.module("contactsTableStatic", []);
 	
 	app.directive("contactsTableStatic", function () {
@@ -9,7 +9,7 @@
 				contacts : "=bind"
 			},
 			controller : ["$scope", function ($scope) {
-				//alert("");
+
 			}],
 			templateUrl: '../partials/contacts-table-static.html'
 		};

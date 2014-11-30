@@ -1,0 +1,34 @@
+INFO [karma]: Karma v0.12.28 server started at http://localhost:9876/
+INFO [launcher]: Starting browser Firefox
+INFO [launcher]: Starting browser Chrome
+INFO [Chrome 39.0.2171 (Linux)]: Connected on socket y54DpLTz32GF7K7MzGGZ with id 42901274
+Chrome 39.0.2171 (Linux): Executed 0 of 7 SUCCESS (0 secs / 0 secs)
+Chrome 39.0.2171 (Linux): Executed 1 of 7 SUCCESS (0 secs / 0.064 secs)
+Chrome 39.0.2171 (Linux): Executed 2 of 7 SUCCESS (0 secs / 0.089 secs)
+Chrome 39.0.2171 (Linux): Executed 3 of 7 SUCCESS (0 secs / 0.103 secs)
+Chrome 39.0.2171 (Linux): Executed 4 of 7 SUCCESS (0 secs / 0.123 secs)
+Chrome 39.0.2171 (Linux): Executed 5 of 7 SUCCESS (0 secs / 0.141 secs)
+Chrome 39.0.2171 (Linux): Executed 6 of 7 SUCCESS (0 secs / 0.178 secs)
+Chrome 39.0.2171 (Linux): Executed 7 of 7 SUCCESS (0 secs / 0.183 secs)
+Chrome 39.0.2171 (Linux): Executed 7 of 7 SUCCESS (0.194 secs / 0.183 secs)
+INFO [Firefox 33.0.0 (Ubuntu)]: Connected on socket rxL1QLWHvq4ghWYZzGGa with id 8129493
+
+Chrome 39.0.2171 (Linux): Executed 7 of 7 SUCCESS (0.194 secs / 0.183 secs)
+Firefox 33.0.0 (Ubuntu): Executed 0 of 7 SUCCESS (0 secs / 0 secs)
+Chrome 39.0.2171 (Linux): Executed 7 of 7 SUCCESS (0.194 secs / 0.183 secs)
+Firefox 33.0.0 (Ubuntu): Executed 1 of 7 SUCCESS (0 secs / 0.038 secs)
+Chrome 39.0.2171 (Linux): Executed 7 of 7 SUCCESS (0.194 secs / 0.183 secs)
+Firefox 33.0.0 (Ubuntu): Executed 2 of 7 SUCCESS (0 secs / 0.047 secs)
+Chrome 39.0.2171 (Linux): Executed 7 of 7 SUCCESS (0.194 secs / 0.183 secs)
+Firefox 33.0.0 (Ubuntu): Executed 3 of 7 SUCCESS (0 secs / 0.058 secs)
+Chrome 39.0.2171 (Linux): Executed 7 of 7 SUCCESS (0.194 secs / 0.183 secs)
+Firefox 33.0.0 (Ubuntu): Executed 4 of 7 SUCCESS (0 secs / 0.069 secs)
+Chrome 39.0.2171 (Linux): Executed 7 of 7 SUCCESS (0.194 secs / 0.183 secs)
+Firefox 33.0.0 (Ubuntu): Executed 5 of 7 SUCCESS (0 secs / 0.079 secs)
+Chrome 39.0.2171 (Linux): Executed 7 of 7 SUCCESS (0.194 secs / 0.183 secs)
+Firefox 33.0.0 (Ubuntu): Executed 6 of 7 SUCCESS (0 secs / 0.089 secs)
+Chrome 39.0.2171 (Linux): Executed 7 of 7 SUCCESS (0.194 secs / 0.183 secs)
+Firefox 33.0.0 (Ubuntu): Executed 7 of 7 SUCCESS (0 secs / 0.096 secs)
+Chrome 39.0.2171 (Linux): Executed 7 of 7 SUCCESS (0.194 secs / 0.183 secs)
+Firefox 33.0.0 (Ubuntu): Executed 7 of 7 SUCCESS (0.103 secs / 0.096 secs)
+TOTAL: 14 SUCCESS
