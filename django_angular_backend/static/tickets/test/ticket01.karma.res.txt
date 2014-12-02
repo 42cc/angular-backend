@@ -1,0 +1,16 @@
+INFO [karma]: Karma v0.12.28 server started at http://localhost:9876/
+INFO [launcher]: Starting browser Firefox
+INFO [launcher]: Starting browser Chrome
+INFO [Chrome 39.0.2171 (Linux)]: Connected on socket dJ3i49sWkAmiE3ouQ3TF with id 92329223
+Chrome 39.0.2171 (Linux): Executed 0 of 1 SUCCESS (0 secs / 0 secs)
+Chrome 39.0.2171 (Linux): Executed 1 of 1 SUCCESS (0 secs / 0.028 secs)
+Chrome 39.0.2171 (Linux): Executed 1 of 1 SUCCESS (0.032 secs / 0.028 secs)
+INFO [Firefox 33.0.0 (Ubuntu)]: Connected on socket FEnqVw7y9JhOpuHyQ3TG with id 51086292
+
+Chrome 39.0.2171 (Linux): Executed 1 of 1 SUCCESS (0.032 secs / 0.028 secs)
+Firefox 33.0.0 (Ubuntu): Executed 0 of 1 SUCCESS (0 secs / 0 secs)
+Chrome 39.0.2171 (Linux): Executed 1 of 1 SUCCESS (0.032 secs / 0.028 secs)
+Firefox 33.0.0 (Ubuntu): Executed 1 of 1 SUCCESS (0 secs / 0.019 secs)
+Chrome 39.0.2171 (Linux): Executed 1 of 1 SUCCESS (0.032 secs / 0.028 secs)
+Firefox 33.0.0 (Ubuntu): Executed 1 of 1 SUCCESS (0.023 secs / 0.019 secs)
+TOTAL: 2 SUCCESS

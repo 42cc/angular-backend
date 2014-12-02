@@ -1,0 +1,29 @@
+[launcher] Running 2 instances of WebDriver
+.........
+------------------------------------
+[chrome #2] PID: 7778
+[chrome #2] Specs: /home/dmi/projects/angular-backend/django_angular_backend/static/tickets/test/ticket01.test.js
+[chrome #2] 
+[chrome #2] Using the selenium server at http://localhost:4444/wd/hub
+[chrome #2] .........
+[chrome #2] 
+[chrome #2] Finished in 14.329 seconds
+[chrome #2] 9 tests, 9 assertions, 0 failures
+[chrome #2] 
+
+[launcher] 1 instance(s) of WebDriver still running
+.........
+------------------------------------
+[firefox #1] PID: 7776
+[firefox #1] Specs: /home/dmi/projects/angular-backend/django_angular_backend/static/tickets/test/ticket01.test.js
+[firefox #1] 
+[firefox #1] Using the selenium server at http://localhost:4444/wd/hub
+[firefox #1] .........
+[firefox #1] 
+[firefox #1] Finished in 4.498 seconds
+[firefox #1] 9 tests, 9 assertions, 0 failures
+[firefox #1] 
+
+[launcher] 0 instance(s) of WebDriver still running
+[launcher] firefox #1 passed
+[launcher] chrome #2 passed
